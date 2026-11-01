@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+foxtools/__init__.py
+foxtools.egg-info/PKG-INFO
+foxtools.egg-info/SOURCES.txt
+foxtools.egg-info/dependency_links.txt
+foxtools.egg-info/top_level.txt

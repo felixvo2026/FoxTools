@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: foxtools
+Version: 1.0.0
+Summary: Meine eigene Python-Bibliothek
+Author: FoxTools Developer
+Requires-Python: >=3.9
