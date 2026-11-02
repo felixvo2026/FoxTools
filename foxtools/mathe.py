@@ -48,3 +48,34 @@ def is_prime(zahl):
     return True  # Wenn kein Teiler gefunden wurde, ist es eine Primzahl
 
 
+def multiply(a):
+    """Multipliziert eine Zahl mit einem Faktor."""
+    return lambda b: a * b
+
+class Clamp:
+    """Überschreibt eine Zahl, sodass sie innerhalb eines bestimmten Bereichs bleibt."""
+    def __init__(self, zahl, min, max):
+        self._zahl = zahl
+        self.min = min
+        self.max = max
+
+    def __str__(self):
+        return f"Clamp(zahl={self._zahl}, min={self.min}, max={self.max})"
+
+    @property
+    def zahl(self):
+        return self._zahl
+
+    @zahl.setter
+    def zahl(self, newZahl):
+        if self.min < newZahl < self.max:
+            self._zahl = newZahl
+        else:
+            raise IndexError("Zahl ist nicht innerhalb der Begrenzungen.")
+        
+def round_to(value, digits):
+    return round(value, digits)
+
+def distance(point1, point2):
+    """Berechnet die Distanz zwischen zwei Punkten im 2D-Raum."""
+    return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** 0.5
