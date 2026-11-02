@@ -1,6 +1,6 @@
 
 
-from . import mathe, pygame_tools, zufall, texte, farben, dateien, system
+from . import mathe, pygame_tools, zufall, texte, farben, dateien, system, data
 
 # Mathe
 from .mathe import *
@@ -22,3 +22,5 @@ from .system import *
 
 #pygame_help
 from .pygame_tools import *
+
+from .data import Data
