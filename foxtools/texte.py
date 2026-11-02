@@ -1,3 +1,5 @@
+import random
+import string
 
 def reverse(text):
     """Dreht einen Text um."""
@@ -31,3 +33,20 @@ def lower(text):
 def contains(text, suche):
     """Prüft ob ein Wort in einem Text vorkommt."""
     return suche.lower() in text.lower()
+
+def is_palindrome(text):
+    """Prüft ob ein Text ein Palindrom ist."""
+    text = clean(text)
+    return text.lower() == text.lower()[::-1]
+
+def random_string(length):
+    """Generiert einen zufälligen String der angegebenen Länge."""
+    zeichen = string.ascii_letters + string.digits
+    text = ''.join(random.choice(zeichen) for _ in range(length))
+    return text
+
+def random_password(length):
+    """Generiert ein zufälliges Passwort der angegebenen Länge."""
+    zeichen = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(zeichen) for _ in range(length))
+    return password
