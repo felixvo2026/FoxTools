@@ -1,23 +1,24 @@
-# Module
+
+
 from . import mathe, pygame_tools, zufall, texte, farben, dateien, system
 
 # Mathe
-from .mathe import add, sub, mul, div, avg
+from .mathe import *
 
 # Zufall
-from .zufall import zahl, wahl, mix, name, ja_nein
+from .zufall import *
 
 # Texte
-from .texte import reverse, count, words, clean, upper, lower, contains
+from .texte import *
 
 # Farben
-from .farben import rgb, hex_rgb, rgb_hex, random_color, invert, gray, is_dark
+from .farben import *
 
 # Dateien
-from .dateien import create, read, write, append, exists, delete, size
+from .dateien import *
 
 # System
-from .system import python, os_name, platform, cwd, user, cpu
+from .system import *
 
 #pygame_help
-from .pygame_tools import main_close, center_window
+from .pygame_tools import *
