@@ -10,7 +10,7 @@ from . import data
 
 
 # Mathe
-from .mathe import add, sub, mul, div, avg
+from .mathe import add, sub, mul, div, avg, is_even, percent, is_prime, multiply, Clamp, round_to, distance
 
 # Pygame
 from .pygame_tools import center_window, main_close
