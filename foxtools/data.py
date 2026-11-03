@@ -6,6 +6,9 @@ class JsonData:
         self.path = self.set_path(path, extension)
         self.data = self.create_file()
 
+    def __str__(self) -> str:
+        return f"JsonData(path={self.path}, data={self.data})"
+
     def set_path(self, path, extension):
         if not path.endswith(extension):
             path += extension
