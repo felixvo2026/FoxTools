@@ -81,3 +81,21 @@ def distance(point1, point2):
     return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** 0.5
 
 pi = 3.141592653589793 # Mathematische Konstante Pi (π)
+
+def sqrt(value):
+    """Berechnet die Quadratwurzel einer Zahl."""
+    if value < 0:
+        raise ValueError("Die Quadratwurzel einer negativen Zahl ist nicht definiert.")
+    return value ** 0.5
+
+def circle_area(radius):
+    """Berechnet die Fläche eines Kreises basierend auf dem Radius."""
+    if radius < 0:
+        raise ValueError("Der Radius darf nicht negativ sein.")
+    return pi * (radius ** 2)
+
+def circle_circumference(radius):
+    """Berechnet den Umfang eines Kreises basierend auf dem Radius."""
+    if radius < 0:
+        raise ValueError("Der Radius darf nicht negativ sein.")
+    return 2 * pi * radius
