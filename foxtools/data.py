@@ -1,10 +1,15 @@
 import json
 import os
 
-class Data:
-    def __init__(self, path):
-        self.path = path
+class JsonData:
+    def __init__(self, path, extension=".json"):
+        self.path = self.set_path(path, extension)
         self.data = self.create_file()
+
+    def set_path(self, path, extension):
+        if not path.endswith(extension):
+            path += extension
+        return path
 
     def create_file(self):
         if not os.path.exists(self.path):

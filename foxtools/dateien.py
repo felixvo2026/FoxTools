@@ -38,7 +38,7 @@ def delete(pfad):
 
     pfad.unlink()
 
-def size(pfad):
+def sizeof(pfad):
     """Gibt die Größe einer Datei in bytes zurück"""
     return Path(pfad).stat().st_size
 
