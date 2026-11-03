@@ -79,3 +79,5 @@ def round_to(value, digits):
 def distance(point1, point2):
     """Berechnet die Distanz zwischen zwei Punkten im 2D-Raum."""
     return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** 0.5
+
+pi = 3.141592653589793 # Mathematische Konstante Pi (π)
