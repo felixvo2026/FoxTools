@@ -76,8 +76,8 @@ class Clamp:
         if self.min <= newZahl <= self.max:
             self._zahl = newZahl
         else:
-            raise IndexError("Zahl ist nicht innerhalb der Begrenzungen.")
-        
+            raise ValueError("Zahl ist nicht innerhalb der Begrenzungen.")
+
 def round_to(value, digits):
     return round(value, digits)
 
