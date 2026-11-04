@@ -29,11 +29,13 @@ def avg(werte):
 
 def is_even(zahl):
     """Prüft, ob eine Zahl gerade ist."""
-    return zahl & 2 == 0
+    return zahl % 2 == 0
 
 def percent(value, total):
     """Berecnet den Anteil in Prozent"""
-    return value/total
+    if total == 0:
+        raise ValueError("Der Gesamtwert darf nicht 0 sein.")
+    return (value / total) * 100
 
 def is_prime(zahl):
     """Prüft, ob eine Zahl eine Primzahl ist"""
@@ -55,9 +57,12 @@ def multiply(a):
 class Clamp:
     """Überschreibt eine Zahl, sodass sie innerhalb eines bestimmten Bereichs bleibt."""
     def __init__(self, zahl, min, max):
-        self._zahl = zahl
+        if not min <= zahl <= max:
+            raise ValueError("Zahl ist nicht innerhalb der Begrenzungen.")
+
         self.min = min
         self.max = max
+        self._zahl = zahl
 
     def __str__(self):
         return f"Clamp(zahl={self._zahl}, min={self.min}, max={self.max})"
@@ -68,7 +73,7 @@ class Clamp:
 
     @zahl.setter
     def zahl(self, newZahl):
-        if self.min < newZahl < self.max:
+        if self.min <= newZahl <= self.max:
             self._zahl = newZahl
         else:
             raise IndexError("Zahl ist nicht innerhalb der Begrenzungen.")
