@@ -7,6 +7,7 @@ from . import farben
 from . import dateien
 from . import system
 from . import data
+from . import safety
 
 
 # Mathe
@@ -32,3 +33,6 @@ from .system import python, os_name, platform, cwd, user, cpu
 
 # Data
 from .data import JsonData, JsonDataManager
+
+# Safety
+from .safety import hash_password, check_password, create_password
