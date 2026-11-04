@@ -31,4 +31,4 @@ from .dateien import create, read, write, append, exists, delete, sizeof
 from .system import python, os_name, platform, cwd, user, cpu
 
 # Data
-from .data import JsonData
+from .data import JsonData, JsonDataManager
