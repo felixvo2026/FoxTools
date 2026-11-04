@@ -63,6 +63,7 @@ from foxtools import texte
 print(texte.words("Hallo FoxTools"))  # 2
 print(texte.contains("Hallo Welt", "welt"))  # True
 print(texte.random_string(8))
+print(texte.random_password(15)) # Passwörter sind nicht sicher, nur zum Testen !!!
 ```
 
 ### Farben
