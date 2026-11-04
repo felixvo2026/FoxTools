@@ -1,0 +1,1 @@
+# Funktionen wie create_password_hash, check_password_hash, generate_salt, etc. können hier implementiert werden.
