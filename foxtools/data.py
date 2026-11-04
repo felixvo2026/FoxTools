@@ -58,3 +58,33 @@ class JsonData:
 
     def reload(self):
         self.data = self.read_file()
+
+class JsonDataManager:
+    def __init__(self, directory):
+        self.directory = directory
+        self.data_files = {}
+
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+    def __str__(self):
+        return f"JsonDataManager (directory={self.directory}, data_files={list(self.data_files.keys())})"
+
+    def get_data(self, filename):
+        if filename not in self.data_files:
+            path = os.path.join(self.directory, filename)
+            self.data_files[filename] = JsonData(path)
+        return self.data_files[filename]
+
+    def add_data(self, filename):
+        if filename not in self.data_files:
+            path = os.path.join(self.directory, filename)
+            self.data_files[filename] = JsonData(path)
+
+    def save_all(self):
+        for data in self.data_files.values():
+            data.save()
+
+    def reload_all(self):
+        for data in self.data_files.values():
+            data.reload()
