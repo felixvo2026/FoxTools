@@ -96,3 +96,12 @@ class JsonDataManager:
     def reload_all(self):
         for data in self.data_files.values():
             data.reload()
+
+    def delete_all(self):
+        for data in self.data_files.values():
+            data.delete_file()
+
+    def delete_self(self):
+        self.delete_all()
+        if os.path.exists(self.directory):
+            os.rmdir(self.directory)
