@@ -36,3 +36,18 @@ from .data import JsonData, JsonDataManager
 
 # Safety
 from .safety import hash_password, check_password, create_password
+
+__all__ = [
+    "mathe",
+    "pygame_tools",
+    "zufall",
+    "texte",
+    "farben",
+    "dateien",
+    "system",
+    "data",
+    "safety",
+]
+
+__version__ = "1.0.0"
+__author__ = "foxdev"
