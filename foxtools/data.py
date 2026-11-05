@@ -36,7 +36,10 @@ class JsonData:
             json.dump(self.data, f, indent=4)
 
     def delete(self, key):
-        self.data.pop(key, None)
+        if key == "*":
+            self.data.clear()
+        else:
+            self.data.pop(key, None)
 
     def exists(self, key):
         return key in self.data
@@ -58,6 +61,11 @@ class JsonData:
 
     def reload(self):
         self.data = self.read_file()
+
+    def delete_file(self):
+        if os.path.exists(self.path):
+            os.remove(self.path)
+            self.data.clear()
 
 class JsonDataManager:
     def __init__(self, directory):
