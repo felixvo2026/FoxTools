@@ -81,7 +81,7 @@ class Clamp:
 def round_to(value, digits):
     return round(value, digits)
 
-def distance(point1, point2):
+def distance2(point1, point2):
     """Berechnet die Distanz zwischen zwei Punkten im 2D-Raum."""
     return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** 0.5
 
@@ -104,3 +104,19 @@ def circle_circumference(radius):
     if radius < 0:
         raise ValueError("Der Radius darf nicht negativ sein.")
     return 2 * pi * radius
+
+def distance3(point1, point2):
+    """Berechnet die Distanz zwischen zwei Punkten im 3D-Raum."""
+    return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2 + (point2[2] - point1[2]) ** 2) ** 0.5
+
+def ggt(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def kgV(a, b):
+    """Berechnet das kleinste gemeinsame Vielfache (kgV) von zwei Zahlen."""
+    if a == 0 or b == 0:
+        raise ValueError("Das kgV ist für 0 nicht definiert.")
+    
+    return abs(a * b) // ggt(a, b)
