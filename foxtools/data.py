@@ -3,12 +3,18 @@ import os
 
 class JsonData:
     """A class to manage your Json File."""
-    def __init__(self, path, extension=".json"):
+    def __init__(self, path, extension=".json", auto_save=False):
         self.path = self.set_path(path, extension)
         self.data = self.create_file()
+        self.auto_save_bool = auto_save
 
     def __str__(self):
         return f"JsonData (path={self.path}, data={self.data})"
+
+    def auto_save(self):
+        if self.auto_save_bool:
+            self.save()
+        
 
     def set_path(self, path, extension):
         """Add the file extension to the file name."""
@@ -32,6 +38,7 @@ class JsonData:
     def set(self, key, value):
         """Add key, value pair to the File."""
         self.data[key] = value
+        self.auto_save()
 
     def get(self, key):
         """Return the value of the key."""
@@ -48,6 +55,7 @@ class JsonData:
             self.data.clear()
         else:
             self.data.pop(key, None)
+        self.auto_save()
 
     def exists(self, key):
         """Return a boolean, which say if a key in the file."""
@@ -68,14 +76,17 @@ class JsonData:
     def update(self, new_data):
         """Update the file with dictionary."""
         self.data.update(new_data)
+        self.auto_save()
 
     def clear(self):
         """Clear the File."""
         self.data.clear()
+        self.auto_save()
 
     def reload(self):
         """Reload the file content."""
         self.data = self.read_file()
+        self.auto_save()
 
     def delete_file(self):
         """Delete the Json File"""
