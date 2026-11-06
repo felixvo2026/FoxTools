@@ -1,0 +1,25 @@
+from datetime import datetime
+from types import TracebackType
+from typing import Callable
+
+
+def time_now() -> datetime: ...
+
+
+class Stopwatch:
+    start: float
+    ende: float
+
+    def __init__(self) -> None: ...
+    def __enter__(self) -> Stopwatch: ...
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> None: ...
+    def elapsed(self) -> float: ...
+    def __call__(self) -> float: ...
+
+
+def timer(func: Callable[..., object], *args: object, **kwargs: object) -> float: ...

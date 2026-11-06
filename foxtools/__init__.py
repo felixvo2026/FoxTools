@@ -8,6 +8,7 @@ from . import dateien
 from . import system
 from . import data
 from . import safety
+from . import zeit
 
 
 # Mathe
@@ -37,6 +38,9 @@ from .data import JsonData, JsonDataManager
 # Safety
 from .safety import hash_password, check_password, create_password
 
+#Zeit
+from .zeit import time_now, timer
+
 __all__ = [
     "mathe",
     "pygame_tools",
@@ -47,7 +51,8 @@ __all__ = [
     "system",
     "data",
     "safety",
+    "zeit"
 ]
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "foxdev"
