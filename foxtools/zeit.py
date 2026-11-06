@@ -32,3 +32,20 @@ def timer(func, *args, **kwargs):
     start = time.perf_counter()
     func(*args, **kwargs)
     return time.perf_counter() - start
+
+def format_duration(seconds):
+    try:
+        seconds = float(seconds)
+    except:
+        raise ValueError("Input must be a float")
+    
+    minutes = int((seconds % 3600) // 60)
+    rest = round(seconds % 60, 2)  
+    hours = int(seconds // 3600)
+
+    if rest.is_integer():
+        rest = int(rest)
+
+    if hours > 0:
+        return f"{hours} Stunden, {minutes} Minuten und {rest} Sekunden"
+    return f"{minutes} Minuten und {rest} Sekunden"

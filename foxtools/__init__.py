@@ -39,7 +39,7 @@ from .data import JsonData, JsonDataManager
 from .safety import hash_password, check_password, create_password
 
 #Zeit
-from .zeit import time_now, timer
+from .zeit import time_now, timer, format_duration
 
 __all__ = [
     "mathe",
