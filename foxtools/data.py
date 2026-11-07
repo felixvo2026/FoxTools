@@ -51,7 +51,7 @@ class JsonData:
 
     def delete(self, key):
         """Delete a pair of the file."""
-        if key == "*" and not key in self.data.keys:
+        if key == "*" and not key in self.data.keys():
             self.data.clear()
         else:
             self.data.pop(key, None)
