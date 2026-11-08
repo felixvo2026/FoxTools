@@ -30,7 +30,7 @@ from .farben import rgb, hex_rgb, rgb_hex, random_color, invert, gray, is_dark
 from .dateien import create, read, write, append, exists, delete, sizeof
 
 # System
-from .system import python, os_name, platform, cwd, user, cpu
+from .system import python_version, os_name, platform, cwd, user, cpu
 
 # Data
 from .data import JsonData, JsonDataManager
