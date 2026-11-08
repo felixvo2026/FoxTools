@@ -4,7 +4,7 @@ import platform as pf
 import os
 
 
-def python():
+def python_version():
     """Gibt die Python-Version zurück."""
     return sys.version.split()[0]
 

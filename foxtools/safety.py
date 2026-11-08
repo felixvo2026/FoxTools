@@ -2,17 +2,20 @@ import bcrypt
 import secrets
 
 def hash_password(password):
+    """Verschlüsselt ein Passwort."""
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(password.encode(), salt)
     return hashed.decode()
 
 def check_password(password, hashed):
+    """Prüft, ob ein Passwort übereinstimmt."""
     try:
         return bcrypt.checkpw(password.encode(), hashed.encode())
     except:
         return False
 
 def create_password(length=12):
+    """Erstellt ein sicheres Password mit Mindestlänge 8."""
     if length < 8:
         raise ValueError("Password length should be at least 8 characters.")
 

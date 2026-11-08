@@ -2,28 +2,30 @@ import json
 import os
 
 class JsonData:
-    """A class to manage your Json File."""
-    def __init__(self, path, extension=".json", auto_save=False):
-        self.path = self.set_path(path, extension)
+    """Eine Klasse zum Managen einer Json-Datei."""
+    def __init__(self, path, auto_save=False):
+        self.path = self.set_path(path, ".json")
         self.data = self.create_file()
         self.auto_save_bool = auto_save
 
     def __str__(self):
+        """Gibt die grundlegenge Informationen des Objekts zurück."""
         return f"JsonData (path={self.path}, data={self.data})"
 
     def auto_save(self):
+        """Speichert die Daten automatisch, wenn auto_save bei der Initialiserung auf True gesetzt wurde."""
         if self.auto_save_bool:
             self.save()
         
 
     def set_path(self, path, extension):
-        """Add the file extension to the file name."""
+        """Fügt die Dateiendung hinzu, falls sie noch nicht existiert."""
         if not path.endswith(extension):
             path += extension
         return path
 
     def create_file(self):
-        """Create the File, if it doesn't exist."""
+        """Erstellt dei Datei, falls sie noch nicht existiert."""
         if not os.path.exists(self.path):
             with open(self.path, "w") as f:
                 json.dump({}, f)
@@ -31,26 +33,26 @@ class JsonData:
         return self.read_file()
 
     def read_file(self):
-        """Read the Json File and return the content."""
+        """Gibt den Inhalt der Datei zurück."""
         with open(self.path, "r") as f:
             return json.load(f)
 
     def set(self, key, value):
-        """Add key, value pair to the File."""
+        """Fügt ein Schlüsselwertpaar hinzu."""
         self.data[key] = value
         self.auto_save()
 
     def get(self, key):
-        """Return the value of the key."""
+        """Gibt den Inhalt des dazugehörigen Schlüssels zurück."""
         return self.data.get(key, None)
 
     def save(self):
-        """Save the File finally."""
+        """Speichert die Datei."""
         with open(self.path, "w") as f:
             json.dump(self.data, f, indent=4)
 
     def delete(self, key):
-        """Delete a pair of the file."""
+        """Löscht Werte aus der Datei."""
         if key == "*" and not key in self.data.keys():
             self.data.clear()
         else:
@@ -58,19 +60,19 @@ class JsonData:
         self.auto_save()
 
     def exists(self, key):
-        """Return a boolean, which say if a key in the file."""
+        """Prüft, ob ein Wert in der Datei existiert."""
         return key in self.data
 
     def keys(self):
-        """Return a list of all keys."""
+        """Gibt eine Liste von allen Schlüsseln zurück."""
         return list(self.data.keys())
 
     def values(self):
-        """Return a list of all values."""
+        """Gibt eine Liste von allen Werten zurück."""
         return list(self.data.values())
 
     def items(self):
-        """Return a list of all items."""
+        """Gibt eine Liste von allen Items."""
         return list(self.data.items())
 
     def update(self, new_data):
@@ -79,22 +81,23 @@ class JsonData:
         self.auto_save()
 
     def clear(self):
-        """Clear the File."""
+        """Löscht den gesamten Inhalt der Datei."""
         self.data.clear()
         self.auto_save()
 
     def reload(self):
-        """Reload the file content."""
+        """Lädt erneut den Dateiinhalt."""
         self.data = self.read_file()
         self.auto_save()
 
     def delete_file(self):
-        """Delete the Json File"""
+        """Löscht die Datei."""
         if os.path.exists(self.path):
             os.remove(self.path)
             self.data.clear()
 
 class JsonDataManager:
+    """Eine Klasse zum Managen mehrerer Json-Dateien."""
     def __init__(self, directory):
         self.directory = directory
         self.data_files = {}
@@ -103,32 +106,39 @@ class JsonDataManager:
             os.makedirs(directory)
 
     def __str__(self):
+        """Gibt grundlegene Informationen des Objekts zurück."""
         return f"JsonDataManager (directory={self.directory}, data_files={list(self.data_files.keys())})"
 
     def get_data(self, filename):
+        """Gibt eine Datei nach ihrem Namen zurück."""
         if filename not in self.data_files:
             path = os.path.join(self.directory, filename)
             self.data_files[filename] = JsonData(path)
         return self.data_files[filename]
 
     def add_data(self, filename):
+        """Fügt eine Datei hinzu."""
         if filename not in self.data_files:
             path = os.path.join(self.directory, filename)
             self.data_files[filename] = JsonData(path)
 
     def save_all(self):
+        """Speichert alle Dateien."""
         for data in self.data_files.values():
             data.save()
 
     def reload_all(self):
+        """Lädt alle Dateien erneut."""
         for data in self.data_files.values():
             data.reload()
 
     def delete_all(self):
+        """Löscht alle Dateien."""
         for data in self.data_files.values():
             data.delete_file()
 
     def delete_self(self):
+        """Löscht den Ordner und alle Dateien."""
         self.delete_all()
         if os.path.exists(self.directory):
             os.rmdir(self.directory)

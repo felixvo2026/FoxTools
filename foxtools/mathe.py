@@ -79,6 +79,7 @@ class Clamp:
             raise ValueError("Zahl ist nicht innerhalb der Begrenzungen.")
 
 def round_to(value, digits):
+    """Rundet eine Zahl auf eine bestimmte Anzahl von Nachkommastellen."""
     return round(value, digits)
 
 def distance2(point1, point2):
@@ -110,6 +111,7 @@ def distance3(point1, point2):
     return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2 + (point2[2] - point1[2]) ** 2) ** 0.5
 
 def ggt(a, b):
+    """Berechnet den größten gemeinsamen Teiler (ggt) von zwei Zahlen."""
     while b != 0:
         a, b = b, a % b
     return a

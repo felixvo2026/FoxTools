@@ -46,7 +46,7 @@ def random_string(length):
     return text
 
 def random_password(length):
-    """Generiert ein zufälliges Passwort der angegebenen Länge."""
+    """Generiert ein zufälliges, nicht sicheres Passwort der angegebenen Länge."""
     zeichen = string.ascii_letters + string.digits + string.punctuation
     password = ''.join(random.choice(zeichen) for _ in range(length))
     return password
