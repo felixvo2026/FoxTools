@@ -12,7 +12,7 @@ from . import zeit
 
 
 # Mathe
-from .mathe import add, sub, mul, div, avg, is_even, percent, is_prime, multiply, Clamp, round_to, distance2, sqrt, circle_area, circle_circumference, distance3, ggt, kgV, pi
+from .mathe import add, sub, mul, div, avg, is_even, percent, is_prime, multiply, Clamp, round_to, distance2, sqrt, circle_area, circle_circumference, distance3, ggt, kgV, pi, absbetrag
 
 # Pygame
 from .pygame_tools import center_window, main_close

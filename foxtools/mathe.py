@@ -122,3 +122,7 @@ def kgV(a, b):
         raise ValueError("Das kgV ist für 0 nicht definiert.")
     
     return abs(a * b) // ggt(a, b)
+
+def absbetrag(x):
+    """Gibt den absoluten Betrag einer reellen Zahl als Kommazahl zurück."""
+    return (x * x) ** 0.5
