@@ -124,5 +124,7 @@ def kgV(a, b):
     return abs(a * b) // ggt(a, b)
 
 def absbetrag(x):
-    """Gibt den absoluten Betrag einer reellen Zahl als Kommazahl zurück."""
-    return (x * x) ** 0.5
+    """Gibt den absoluten Betrag einer reellen Zahl zurück."""
+    if x >= 0:
+        return x
+    return -x
