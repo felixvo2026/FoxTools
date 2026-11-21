@@ -1,3 +1,5 @@
+import re
+
 def add(a, b):
     """Addiert zwei Terme"""
     return a + b
@@ -128,3 +130,92 @@ def absbetrag(x):
     if x >= 0:
         return x
     return -x
+
+
+def calculate(x):
+    if not x or x == 0:
+        return 0
+
+    # Eingabe bereinigen
+    expr = str(x).replace(" ", "").replace(",", ".").replace("**", "^")
+
+    # Tokens extrahieren (Zahlen inkl. Dezimalstellen und Operatoren)
+    tokens = re.findall(r"\d+(?:\.\d+)?|[+\-*/^()]", expr)
+
+    if not tokens:
+        return 0
+
+    def parse_expression(index):
+        # 1. Ebene: Addition und Subtraktion (niedrigste Priorität)
+        val, index = parse_term(index)
+        while index < len(tokens) and tokens[index] in ("+", "-"):
+            op = tokens[index]
+            right, index = parse_term(index + 1)
+            val = val + right if op == "+" else val - right
+        return val, index
+
+    def parse_term(index):
+        # 2. Ebene: Multiplikation und Division
+        val, index = parse_power(index)
+        while index < len(tokens) and tokens[index] in ("*", "/"):
+            op = tokens[index]
+            right, index = parse_power(index + 1)
+            if op == "*":
+                val *= right
+            else:
+                if right == 0:
+                    raise ZeroDivisionError("Division durch Null")
+                val /= right
+        return val, index
+
+    def parse_power(index):
+        # 3. Ebene: Potenzen (rechtsassoziativ: 2^3^2 = 2^(3^2))
+        val, index = parse_factor(index)
+        if index < len(tokens) and tokens[index] == "^":
+            right, index = parse_power(index + 1)
+            val **= right
+        return val, index
+
+    def parse_factor(index):
+        # 4. Ebene: Zahlen, Vorzeichen und Klammern (höchste Priorität)
+        token = tokens[index]
+
+        # Negative oder positive Vorzeichen am Anfang (z. B. -5 oder -(2+3))
+        if token == "-":
+            val, index = parse_factor(index + 1)
+            return -val, index
+        if token == "+":
+            return parse_factor(index + 1)
+
+        # Klammern auflösen
+        if token == "(":
+            val, index = parse_expression(index + 1)
+            if index >= len(tokens) or tokens[index] != ")":
+                raise ValueError("Fehlende schließende Klammer ')'")
+            return val, index + 1
+
+        # Normale Zahl
+        try:
+            return float(token), index + 1
+        except ValueError:
+            raise ValueError(f"Unerwartetes Zeichen: {token}")
+
+    result, final_index = parse_expression(0)
+
+    if final_index != len(tokens):
+        raise ValueError("Ungültige Syntax im Ausdruck")
+
+    # Gibt eine Ganzzahl zurück, falls kein Nachkommawert existiert (z. B. 4 statt 4.0)
+    return int(result) if result.is_integer() else result
+
+
+
+testdaten = [
+    3 + 4 * (3+3),
+    2+8,
+    2**104,
+    2 + (1/5)
+]
+
+for daten in testdaten:
+    print(calculate(str(daten)))

@@ -25,10 +25,16 @@ class JsonData:
         return path
 
     def create_file(self):
-        """Erstellt dei Datei, falls sie noch nicht existiert."""
-        if not os.path.exists(self.path):
-            with open(self.path, "w") as f:
-                json.dump({}, f)
+        """Erstellt die Datei, falls sie noch nicht existiert."""
+        ordner = os.path.dirname(self.path)
+        if ordner:
+            os.makedirs(ordner, exist_ok=True)
+            
+        try:
+            with open(self.path, "x", encoding="utf-8") as f:
+                json.dump({}, f, indent=4)
+        except FileExistsError:
+            pass
 
         return self.read_file()
 
