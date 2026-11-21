@@ -24,7 +24,7 @@ from .zufall import zahl, wahl, mix, name, ja_nein
 from .texte import reverse, count, words, clean, upper, lower, contains
 
 # Farben
-from .farben import rgb, hex_rgb, rgb_hex, random_color, invert, gray, is_dark
+from .farben import rgb, hex_rgb, rgb_hex, random_color, invert, gray, is_dark, brint
 
 # Dateien
 from .dateien import create, read, write, append, exists, delete, sizeof
